@@ -1,0 +1,93 @@
+############################################
+# Oqtane / ASP.NET Core
+############################################
+
+# Build results
+bin/
+obj/
+out/
+
+# Publish output
+publish/
+artifacts/
+
+# Oqtane runtime folders
+wwwroot/Modules/
+wwwroot/Themes/
+wwwroot/packages/
+wwwroot/temp/
+
+# Module & theme build output
+**/ClientModules/**/dist/
+**/ClientThemes/**/dist/
+
+############################################
+# Logs & runtime data
+############################################
+logs/
+*.log
+
+# Data Protection keys (DO NOT COMMIT)
+DataProtectionKeys/
+**/DataProtectionKeys/
+
+############################################
+# User secrets & config overrides
+############################################
+secrets.json
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.local.json
+
+############################################
+# Database / local data
+############################################
+*.mdf
+*.ldf
+*.db
+*.sqlite
+
+############################################
+# Node / frontend tooling
+############################################
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+############################################
+# Visual Studio
+############################################
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+############################################
+# VS Code
+############################################
+.vscode/*
+!.vscode/settings.json
+!.vscode/extensions.json
+
+############################################
+# Rider / JetBrains
+############################################
+.idea/
+*.sln.iml
+
+############################################
+# OS
+############################################
+.DS_Store
+Thumbs.db
+desktop.ini
+
+############################################
+# Misc
+############################################
+*.cache
+*.tmp
+*.temp
