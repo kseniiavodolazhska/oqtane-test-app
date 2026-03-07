@@ -28,7 +28,7 @@ steps:
 - script: |
     dotnet publish Server/Oqtane.Application.Server.csproj \
       --configuration $(buildConfiguration) \
-      --output $(Build.ArtifactStagingDirectory)
+      --output $(Build.ArtifactStagingDirectory)/out
   displayName: Publish Oqtane Server
 
 - task: ArchiveFiles@2
