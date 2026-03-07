@@ -31,7 +31,19 @@ steps:
       --output $(Build.ArtifactStagingDirectory)
   displayName: Publish Oqtane Server
 
-- task: PublishBuildArtifacts@1
+- task: ArchiveFiles@2
+  displayName: 'Zip published files'
   inputs:
-    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-    ArtifactName: 'oqtane'
+    rootFolderOrFile: '$(Build.ArtifactStagingDirectory)/out'
+    includeRootFolder: false
+    archiveType: 'zip'
+    archiveFile: '$(Build.ArtifactStagingDirectory)/oqtane-server.zip'
+    replaceExistingArchive: true
+
+# 2. Publish the ZIP file as a Pipeline Artifact (Recommended over PublishBuildArtifacts)
+- task: PublishPipelineArtifact@1
+  displayName: 'Publish ZIP artifact'
+  inputs:
+    targetPath: '$(Build.ArtifactStagingDirectory)/oqtane-server.zip'
+    artifactName: 'oqtane'
+    publishLocation: 'pipeline'
