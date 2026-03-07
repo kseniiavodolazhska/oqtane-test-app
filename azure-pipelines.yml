@@ -22,11 +22,11 @@ steps:
 - script: dotnet restore
   displayName: Restore dependencies
 
-- script: dotnet build Oqtane.sln --configuration $(buildConfiguration) --no-restore
+- script: dotnet build Oqtane.Application.slnx --configuration $(buildConfiguration) --no-restore
   displayName: Build solution
 
 - script: |
-    dotnet publish Oqtane.Server/Oqtane.Server.csproj \
+    dotnet publish Server/Oqtane.Application.Server.csproj \
       --configuration $(buildConfiguration) \
       --output $(Build.ArtifactStagingDirectory)
   displayName: Publish Oqtane Server
