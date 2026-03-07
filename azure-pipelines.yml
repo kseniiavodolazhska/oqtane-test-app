@@ -7,13 +7,31 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: 'windows-latest'
+
+variables:
+  buildConfiguration: 'Release'
 
 steps:
-- script: echo Hello, world!
-  displayName: 'Run a one-line script'
+
+- task: UseDotNet@2
+  inputs:
+    packageType: 'sdk'
+    version: '8.0.x'
+
+- script: dotnet restore
+  displayName: Restore dependencies
+
+- script: dotnet build Oqtane.sln --configuration $(buildConfiguration) --no-restore
+  displayName: Build solution
 
 - script: |
-    echo Add other tasks to build, test, and deploy your project.
-    echo See https://aka.ms/yaml
-  displayName: 'Run a multi-line script'
+    dotnet publish Oqtane.Server/Oqtane.Server.csproj \
+      --configuration $(buildConfiguration) \
+      --output $(Build.ArtifactStagingDirectory)
+  displayName: Publish Oqtane Server
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'oqtane'
